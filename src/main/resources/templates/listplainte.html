@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Plaintes</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#85817a, #d3cdc0);
+            display: flex;
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Assurer que le body prend toute la hauteur */
+        }
+
+        .button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #8B4513; /* Couleur marron */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+
+        .plaintes-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .plaintes-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .plaintes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .plaintes-table th,
+        .plaintes-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        .plaintes-table th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .plaintes-table td {
+            background-color: #fff;
+            color: #555;
+        }
+
+        .plaintes-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .plaintes-table a {
+            color: #8B4513; /* Couleur marron */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .plaintes-table a:hover {
+            color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+
+        .add-plainte-link {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .add-plainte-link a {
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: #8B4513; /* Couleur marron */
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-plainte-link a:hover {
+            background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+    </style>
+</head>
+<body>
+<div class="plaintes-container">
+    <h1>Liste des Plaintes</h1>
+    <div class="add-plainte-link">
+        <a th:href="@{/listplainte}" class="button">Ajouter une Plainte</a>
+    </div>
+
+    <table class="plaintes-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Sujet</th>
+            <th>Status</th>
+            <th>Assigné à</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="plainte : ${plaintes}">
+            <td th:text="${plainte.id}"></td>
+            <td th:text="${plainte.subject}"></td>
+            <td>
+                <select th:field="*{status}">
+                    <option value="Open" th:selected="${plainte.status == 'Open'}">Open</option>
+                    <option value="In Progress" th:selected="${plainte.status == 'In Progress'}">In Progress</option>
+                    <option value="Closed" th:selected="${plainte.status == 'Closed'}">Closed</option>
+                </select>
+            </td>
+            <td th:text="${plainte.assignedTo != null ? plainte.assignedTo.username : 'Non assign&eacute;'}"></td>
+            <td>
+                <a th:href="@{'/plaintes/' + ${plainte.id} + '/assign'}">Assigner</a>
+                <a th:href="@{'/plaintes/' + ${plainte.id} + '/status'}">Modifier Statut</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Type d'interaction</title>
+  <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#85817a, #d3cdc0);
+            display: flex;
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Assurer que le body prend toute la hauteur */
+        }
+
+        .add-plainte-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .add-plainte-form h1 {
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .add-plainte-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .add-plainte-form label {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .add-plainte-form input,
+        .add-plainte-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 1.5rem); /* Compte pour le padding */
+        }
+
+        .add-plainte-form select {
+            margin-bottom: 1rem; /* Ajout de la marge basse */
+        }
+
+        .add-plainte-form button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #8B4513; /* Couleur marron */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-plainte-form button:hover {
+            background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+    </style>
+</head>
+<body>
+<!-- Contenu de la page -->
+<div class="add-plainte-form">
+  <h1>Type d'interaction :</h1>
+  <form method="post" th:action="@{/interaction/chooseInteraction}">
+    <input type="hidden"/>
+    <select name="interactionType" id="interactionType">
+      <option value="" disabled selected>Choisissez le type d'interaction</option>
+      <option value="call">Appel téléphonique</option>
+      <option value="email">Email</option>
+      <option value="meeting">Rencontre en personne</option>
+      <option value="chat">Chat en ligne</option>
+    </select>
+    <button type="submit">Choisir</button>
+  </form>
+
+</div>
+</body>
+</html>

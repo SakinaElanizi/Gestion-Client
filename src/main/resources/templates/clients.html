@@ -50,10 +50,34 @@
       <td th:text="${client.email}">email@example.com</td>
       <td th:text="${client.adresse}">email@example.com</td>
       <td th:text="${client.telephone}">email@example.com</td>
-      <td><a th:href="@{'/detail-client/' + ${client.id}}" class="btn btn-primary">Détail client</a></td>
+      <td>
+        <a th:href="@{/client-detail/{id}(id=${client.id})}">
+          <button>Détail client</button>
+        </a>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
 </body>
+
+<style>
+
+
+   button {
+        padding: 0.75rem;
+        font-size: 1rem;
+        color: white;
+        background-color: #8B4513; /* Couleur marron */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+
+  </style>
+
 </html>
+
+

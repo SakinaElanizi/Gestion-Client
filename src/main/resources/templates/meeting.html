@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Détails de la rencontre en personne</title>
+  <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#85817a, #d3cdc0);
+            display: flex;
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Assurer que le body prend toute la hauteur */
+        }
+
+        .meeting-details-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .meeting-details-form h1 {
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .meeting-details-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meeting-details-form label {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .meeting-details-form input,
+        .meeting-details-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 1.5rem); /* Compte pour le padding */
+        }
+
+        .meeting-details-form button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #8B4513; /* Couleur marron */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .meeting-details-form button:hover {
+            background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+    </style>
+</head>
+<body>
+<!-- Contenu de la page -->
+<div class="meeting-details-form">
+  <h1>Détails de la rencontre en personne :</h1>
+  <form action="/submitMeetingDetails" method="post">
+    <label for="meetingLocation">Lieu de la rencontre :</label>
+    <input type="text" id="meetingLocation" name="meetingLocation" required>
+
+    <label for="meetingDate">Date de la rencontre :</label>
+    <input type="date" id="meetingDate" name="meetingDate" required>
+
+    <label for="meetingTime">Heure de la rencontre :</label>
+    <input type="time" id="meetingTime" name="meetingTime" required>
+
+    <label for="meetingPurpose">But de la rencontre :</label>
+    <textarea id="meetingPurpose" name="meetingPurpose" rows="6" required></textarea>
+
+    <button type="submit">Enregistrer</button>
+  </form>
+</div>
+</body>
+</html>

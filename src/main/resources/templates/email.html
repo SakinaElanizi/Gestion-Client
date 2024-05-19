@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Détails de l'email</title>
+  <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#85817a, #d3cdc0);
+            display: flex;
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Assurer que le body prend toute la hauteur */
+        }
+
+        .email-details-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .email-details-form h1 {
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .email-details-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .email-details-form label {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .email-details-form input,
+        .email-details-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 1.5rem); /* Compte pour le padding */
+        }
+
+        .email-details-form button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #8B4513; /* Couleur marron */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .email-details-form button:hover {
+            background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+        }
+    </style>
+</head>
+<body>
+<!-- Contenu de la page -->
+<div class="email-details-form">
+  <h1>Détails de l'e-mail :</h1>
+  <form action="/submitEmailDetails" method="post">
+    <label for="senderEmail">Adresse e-mail de l'expéditeur :</label>
+    <input type="email" id="senderEmail" name="senderEmail" required>
+
+    <label for="recipientEmail">Adresse e-mail du destinataire :</label>
+    <input type="email" id="recipientEmail" name="recipientEmail" required>
+
+    <label for="emailSubject">Sujet de l'e-mail :</label>
+    <input type="text" id="emailSubject" name="emailSubject" required>
+
+    <label for="emailContent">Contenu de l'e-mail :</label>
+    <textarea id="emailContent" name="emailContent" rows="6" required></textarea>
+
+    <button type="submit">Envoyer</button>
+  </form>
+</div>
+</body>
+</html>

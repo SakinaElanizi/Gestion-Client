@@ -19,4 +19,14 @@ public class ClientService {
     public Iterable<Client> getAllClients() {
         return clientRepository.findAll();
     }
-}
+
+    public Client getClientById(Long id) {
+        return clientRepository.findById(id).orElse(null);
+    }
+    public void updateClient(Client client) {
+            // Update the client's information
+            clientRepository.save(client);
+        }
+
+    }
+
