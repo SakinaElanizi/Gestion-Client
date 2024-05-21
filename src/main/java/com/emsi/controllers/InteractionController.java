@@ -17,7 +17,7 @@ public class InteractionController {
     public String chooseInteraction(@RequestParam("interactionType") String interactionType){
         switch (interactionType) {
             case "call":
-                return "redirect:/login"; // Redirect to the call page
+                return "redirect:/call"; // Redirect to the call page
             case "email":
                 return "redirect:/email"; // Redirect to the email page
             case "meeting":

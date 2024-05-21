@@ -39,11 +39,6 @@ public class ClientController {
         return "redirect:/clients"; // Redirige vers la liste des clients après l'ajout
     }
 
-    @GetMapping(path = "/home")
-    public String hello(Model model) {
-        model.addAttribute("message", "Hello World!");
-        return "home"; // Suppose que vous avez une page 'home.html' pour afficher le message
-    }
 
     @GetMapping("/client-detail/{id}")
     public String clientDetail(@PathVariable Long id, Model model) {
