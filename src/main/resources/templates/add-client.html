@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="add-client-form">
+    <h1>Add Client</h1>
+    <form th:action="@{/addclient}" method="post" th:object="${client}" onsubmit="return validateForm()">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" th:field="*{nom}" required>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" th:field="*{prenom}" required>
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" th:field="*{adresse}" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+        <label for="telephone">Téléphone:</label>
+        <input type="tel" id="telephone" name="telephone" th:field="*{telephone}">
+        <button type="submit" href="/clients">Ajouter</button>
+    </form>
+</div>
+
+<style>
+    /* Mettez votre CSS ici */
+    html {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: linear-gradient(#85817a, #d3cdc0);
+        display: flex;
+        justify-content: center; /* Centrer horizontalement */
+        align-items: center; /* Centrer verticalement */
+        height: 100vh; /* Assurer que le body prend toute la hauteur */
+    }
+
+    .add-client-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .add-client-form h1 {
+        margin-bottom: 1.5rem;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
+
+    .add-client-form form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-client-form label {
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    .add-client-form input {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: calc(100% - 1.5rem); /* Compte pour le padding */
+    }
+
+    .add-client-form button {
+        padding: 0.75rem;
+        font-size: 1rem;
+        color: white;
+        background-color: #8B4513; /* Couleur marron */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .add-client-form button:hover {
+        background-color: #5a2e0f; /* Couleur marron plus foncée pour le hover */
+    }
+  </style>
+
+
+<script>
+    function validateForm() {
+      var nom = document.getElementById('nom').value.trim();
+      var prenom = document.getElementById('prenom').value.trim();
+      var adresse = document.getElementById('adresse').value.trim();
+      var email = document.getElementById('email').value.trim();
+
+      if (nom === '' || prenom === '' || adresse === '' || email === '') {
+        alert('Veuillez remplir tous les champs.');
+        return false;
+      }
+
+      if (!isValidName(nom) || !isValidName(prenom)) {
+        alert('Le nom et le prénom doivent contenir uniquement des lettres.');
+        return false;
+      }
+
+      if (email.indexOf('@') === -1) {
+        alert('Veuillez saisir une adresse email valide.');
+        return false;
+      }
+
+      return true;
+    }
+
+    function isValidName(name) {
+      return /^[a-zA-Z]+$/.test(name);
+    }
+  </script>
+</body>
+</html>
